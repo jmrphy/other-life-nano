@@ -1,56 +1,40 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
 import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
-import { BLOG } from "@consts";
+import { BLOG, THEME } from "@consts";
 
-const data = (await getCollection("blog"))
+const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  
-type Acc = {
-  [year: string]: CollectionEntry<"blog">[];
-}
-
-const posts = data.reduce((acc: Acc, post) => {
-    const year = post.data.date.getFullYear().toString();
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(post);
-    return acc;
-  }, {});
-
-const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a)); 
 ---
 
 <PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
-  <Container>
-    <div class="space-y-10">
-      <div class="animate font-semibold text-black dark:text-white">
+  <div class={`${THEME.background.content.light} dark:${THEME.background.content.dark} py-8 min-h-screen`}>
+    <Container paper>
+      <h4 class="animate font-semibold text-black dark:text-white">
         Blog
+      </h4>
+      <div class="space-y-16">
+        <section>
+          <article class="animate space-y-4">
+            <p>
+              {BLOG.DESCRIPTION}
+            </p>
+          </article>
+        </section>
+
+        <section class="animate space-y-6">
+          <ul class="flex flex-col gap-4">
+            {posts.map(post => (
+              <li>
+                <ArrowCard entry={post} />
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
-      <div class="space-y-4">
-        {years.map(year => (
-          <section class="animate space-y-4">
-            <div class="font-semibold text-black dark:text-white">
-              {year}
-            </div>
-            <div>
-              <ul class="flex flex-col gap-4">
-                {
-                  posts[year].map((post) => (
-                    <li>
-                      <ArrowCard entry={post}/>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          </section>
-        ))}
-      </div>
-    </div>
-  </Container>
+    </Container>
+  </div>
 </PageLayout>

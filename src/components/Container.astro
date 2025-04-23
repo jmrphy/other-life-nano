@@ -1,7 +1,17 @@
 ---
+import { THEME } from "@consts";
 
+interface Props {
+  paper?: boolean;
+}
+
+const { paper = false } = Astro.props;
+
+const paperClasses = paper 
+  ? `${THEME.paper.background} ${THEME.paper.shadow} ${THEME.paper.rounded} ${THEME.paper.padding}`
+  : "px-5";
 ---
 
-<div class="mx-auto max-w-screen-sm px-5">
+<div class={`mx-auto ${THEME.container.default} ${THEME.container.desktop} ${paperClasses}`}>
   <slot />
 </div>
