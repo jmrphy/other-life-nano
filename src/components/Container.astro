@@ -3,15 +3,16 @@ import { THEME } from "@consts";
 
 interface Props {
   paper?: boolean;
+  class?: string;
 }
 
-const { paper = false } = Astro.props;
+const { paper = false, class: extraClass = "" } = Astro.props;
 
 const paperClasses = paper 
-  ? `${THEME.paper.background} ${THEME.paper.shadow} ${THEME.paper.rounded} ${THEME.paper.padding}`
+  ? `${THEME.paper.background.light} dark:${THEME.paper.background.dark} ${THEME.paper.shadow.light} dark:${THEME.paper.shadow.dark} ${THEME.paper.rounded} ${THEME.paper.padding}`
   : "px-5";
 ---
 
-<div class={`mx-auto ${THEME.container.default} ${THEME.container.desktop} ${paperClasses}`}>
+<div class={`mx-auto ${THEME.container.default} ${THEME.container.desktop} ${paperClasses} ${extraClass}`}>
   <slot />
 </div>

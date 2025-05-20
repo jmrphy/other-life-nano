@@ -2,7 +2,7 @@
 import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import { SITE } from "@consts";
+import { SITE, THEME } from "@consts";
 
 type Props = {
   title: string;
@@ -18,7 +18,7 @@ const { title, description, class: className } = Astro.props;
   <head>
     <Head title={`${title} | ${SITE.NAME}`} description={description} />
   </head>
-  <body>
+  <body class={`${THEME.background.home.light} dark:${THEME.background.home.dark}`}>
     <Header />
     <main class={className}>
       <slot />

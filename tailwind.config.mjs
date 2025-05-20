@@ -15,4 +15,10 @@ export default {
     },
   },
   plugins: [require("@tailwindcss/typography")],
+  safelist: [
+    'bg-stone-800',
+    'dark:bg-stone-800',
+    'bg-stone-900',
+    'dark:bg-stone-900',
+  ],
 };

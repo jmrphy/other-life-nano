@@ -1,5 +1,40 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Theme Customization Guide
+
+The site's theme customization is centralized in [src/consts.ts](mdc:src/consts.ts) under the `THEME` object. This provides a single source of truth for theme-related customizations while preserving documentation of the original defaults.
+
+## All theme customizations must be documented here
+
+## Key Components
+
+### Container Component
+[src/components/Container.astro](mdc:src/components/Container.astro) uses the theme constants for responsive width control:
+- Default width (mobile/tablet): `THEME.container.default`
+- Desktop width: `THEME.container.desktop`
+
+### Background Colors
+Background colors are defined in `THEME.background`:
+- Default site background (in `default`)
+- Special page backgrounds (like `home`)
+Each has light/dark mode variants
+
+## Usage Example
+To use theme settings in a component:
+```astro
+import { THEME } from "@consts";
+
+// For backgrounds
+<div class={`${THEME.background.default.light} dark:${THEME.background.default.dark}`}>
+
+// For container widths
+<div class={`${THEME.container.default} ${THEME.container.desktop}`}>
+```
+
+## Current Customizations
+- Container width expands on desktop (original was fixed)
+- Home page has custom yellow background (#fcde12)
+- All original defaults are documented in comments in the THEME object

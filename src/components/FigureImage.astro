@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  imageSrc: any; // Use 'any' or a more appropriate type if known, Image handles import() result
+  alt: string;
+  caption: string;
+}
+
+const { imageSrc, alt, caption } = Astro.props as Props;
+---
+
+<figure>
+  <Image src={imageSrc} alt={alt} />
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  figure {
+    border: 1px solid #ccc; /* Thin grey border */
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 1rem; /* Padding around image and caption */
+    display: inline-block; /* Make the figure only as wide as its content */
+    margin-bottom: 1rem; /* Add some space below the figure */
+    max-width: 100%; /* Ensure figure doesn't overflow container */
+  }
+
+  /* Target Image component directly within the figure */
+  figure :global(img) { /* Use :global(img) to target the img rendered by <Image /> */
+      display: block; /* Ensure image is block level */
+      max-width: 100%; /* Prevent image overflow */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 0.5rem; /* Space between image and caption */
+  }
+
+  figure figcaption {
+      text-align: center; /* Center the caption text */
+      font-size: 0.9em; /* Slightly smaller font for caption */
+      color: #555; /* Grey color for caption text */
+  }
+</style> 

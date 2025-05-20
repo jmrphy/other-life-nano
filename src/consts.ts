@@ -15,7 +15,7 @@ export const HOME: Metadata = {
 
 export const BLOG: Metadata = {
   TITLE: "Blog",
-  DESCRIPTION: "A collection of articles on topics I am passionate about.",
+  DESCRIPTION: "A collection of posts about my thoughts and experiences.",
 };
 
 export const WORK: Metadata = {
@@ -26,6 +26,11 @@ export const WORK: Metadata = {
 export const PROJECTS: Metadata = {
   TITLE: "Projects",
   DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
+};
+
+export const ABOUT: Metadata = {
+  TITLE: "About",
+  DESCRIPTION: "Learn more about me.",
 };
 
 export const SOCIALS: Socials = [
@@ -67,22 +72,33 @@ export const THEME = {
   background: {
     default: {
       light: "bg-stone-100", // Original: bg-stone-100
-      dark: "bg-stone-900", // Original: bg-stone-900
+      dark: "bg-stone-900", // Updated: replaced dark green with neutral dark stone for better contrast
     },
     home: {
       light: "bg-[#fcde12]", // Original: same as default
-      dark: "bg-[#fcde12]", // Original: same as default
+      dark: "bg-stone-900", // Updated from green to neutral dark stone for dark mode
     },
     content: {
       light: "bg-[#fcde12]", // For blog/page backgrounds
-      dark: "bg-[#fcde12]",
+      dark: "bg-stone-900", // Updated from green to neutral dark stone for dark mode
     }
+  },
+
+  // Header settings
+  header: {
+    opaque: true, // Set to false for a transparent header that shows the body background
   },
 
   // Container styles
   paper: {
-    background: "bg-white", // White background for paper effect
-    shadow: "shadow-xl", // Large shadow for depth
+    background: {
+      light: "bg-white", // White background for paper effect in light mode
+      dark: "bg-stone-800", // Updated: ensured paper uses a consistent neutral dark stone surface
+    },
+    shadow: {
+      light: "shadow-xl", // Large shadow for depth in light mode
+      dark: "shadow-xl",   // Large shadow for depth in dark mode
+    },
     rounded: "rounded-lg", // Slightly rounded corners
     padding: "p-8 sm:p-12", // Comfortable padding, more on larger screens
   },
