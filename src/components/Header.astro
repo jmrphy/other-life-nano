@@ -2,28 +2,40 @@
 import Container from "@components/Container.astro";
 import Link from "@components/Link.astro";
 import { SITE, THEME } from "@consts";
+
+type Props = {
+  pageType?: "default" | "content";
+};
+
+const { pageType = "default" } = Astro.props;
+
+// Choose header background based on page type
+const headerBackground = THEME.header.opaque 
+  ? `${THEME.header.background[pageType].light} dark:${THEME.header.background[pageType].dark}`
+  : "";
+
+// Choose navigation colors based on page type
+const navColors = THEME.navigation[pageType];
 ---
 
-<header class:list={[
-  THEME.header.opaque ? `${THEME.background.home.light} dark:${THEME.background.default.dark}` : "",
-]}>
+<header class:list={[headerBackground, "border-b border-black/20 dark:border-white/20"]}>
   <Container>
     <div class="flex flex-wrap gap-y-2 justify-between">
       <Link href="/" underline={false}>
-        <div class="font-semibold">
+        <div class={`font-semibold ${navColors.title.light} dark:${navColors.title.dark} ${navColors.titleHover.light} dark:${navColors.titleHover.dark} transition-colors duration-300 ease-in-out`}>
           {SITE.NAME}
         </div>
       </Link>
       <nav class="hidden md:inline-flex gap-2 font-medium text-sm">
-        <a href="/blog" class="hover:text-black dark:hover:text-white"> Blog </a>
-        {/* <a href="/projects" class="hover:text-black dark:hover:text-white"> Projects </a> */}
-        {/* <a href="/work" class="hover:text-black dark:hover:text-white"> Work </a> */}
-        <a href="/about" class="hover:text-black dark:hover:text-white"> About </a>
+        <a href="/blog" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} transition-colors duration-300 ease-in-out`}> Blog </a>
+        {/* <a href="/projects" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark}`}> Projects </a> */}
+        {/* <a href="/work" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark}`}> Work </a> */}
+        <a href="/about" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} transition-colors duration-300 ease-in-out`}> About </a>
       </nav>
 
       <button
         id="mobile-menu-button"
-        class="md:hidden"
+        class={`md:hidden ${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} transition-colors duration-300 ease-in-out`}
         aria-label="Open Menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -38,12 +50,12 @@ import { SITE, THEME } from "@consts";
         class="hidden md:hidden flex-col w-full gap-2 font-medium text-sm"
         aria-labelledby="mobile-menu-button"
       >
-        <a href="/blog" class="hover:text-black dark:hover:text-white p-4 -m-4"> Blog </a>
-        {/* <a href="/projects" class="hover:text-black dark:hover:text-white p-4 -m-4">
+        <a href="/blog" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} p-4 -m-4 transition-colors duration-300 ease-in-out`}> Blog </a>
+        {/* <a href="/projects" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} p-4 -m-4`}>
           Projects
         </a> */}
-        {/* <a href="/work" class="hover:text-black dark:hover:text-white p-4 -m-4"> Work </a> */}
-        <a href="/about" class="hover:text-black dark:hover:text-white p-4 -m-4"> About </a>
+        {/* <a href="/work" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} p-4 -m-4`}> Work </a> */}
+        <a href="/about" class={`${navColors.links.light} dark:${navColors.links.dark} ${navColors.hover.light} dark:${navColors.hover.dark} p-4 -m-4 transition-colors duration-300 ease-in-out`}> About </a>
       </nav>
     </div>
   </Container>

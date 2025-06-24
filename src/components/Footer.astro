@@ -1,15 +1,29 @@
 ---
 import Container from "@components/Container.astro";
-import { SITE } from "@consts";
-import BackToTop from "@components/BackToTop.astro";
+import { SITE, THEME } from "@consts";
+
+type Props = {
+  backgroundType?: "default" | "content"; // Type of page background this footer is on
+};
+
+const { backgroundType = "default" } = Astro.props;
+
+// Choose footer styling based on background type
+const footerBackground = backgroundType === "content" 
+  ? `${THEME.footer.content.light} dark:${THEME.footer.content.dark}`
+  : `${THEME.footer.default.light} dark:${THEME.footer.default.dark}`;
+
+const footerText = `${THEME.footer.text.light} dark:${THEME.footer.text.dark}`;
 ---
 
-<footer class="animate">
+<footer class={`animate ${footerBackground} ${footerText} px-6 py-4 mt-8`}>
   <Container>
     <div class="relative">
+      {/*
       <div class="absolute right-0 -top-20">
         <BackToTop />
       </div>
+      */}
     </div>
     <div class="flex justify-between items-center">
       <div>
