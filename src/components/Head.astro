@@ -61,9 +61,6 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- Analytics -->
-<script defer data-domain="justinmurphy.studio" src="https://plausible.io/js/script.js"></script>
-
 <script>
   import type { TransitionBeforeSwapEvent } from "astro:transitions/client";
   document.addEventListener("astro:before-swap", (e) =>
