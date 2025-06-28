@@ -1,8 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import Container from "@components/Container.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
 import FormattedDate from "@components/FormattedDate.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 
 
 export async function getStaticPaths() {
@@ -17,23 +17,32 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+
+const hasH2Headings = headings.some(h => h.depth === 2);
 ---
 
-<PageLayout title={post.data.title} description={post.data.description}>
-  <Container paper class="min-h-screen">
-    <div class="space-y-1 my-10 text-center">
-      <div class="animate text-2xl font-semibold text-black dark:text-white">
-        {post.data.title}
-      </div>
-      <div class="animate flex items-center gap-1.5 justify-center">
-        <div class="font-base text-sm">
-          <FormattedDate date={post.data.date} />
+<ContentLayout title={post.data.title} description={post.data.description}>
+  <div class="relative">
+    {hasH2Headings &&
+      <aside class="hidden lg:block fixed top-22 right-20 w-72 z-10">
+        <TableOfContents headings={headings} />
+      </aside>
+    }
+    <div class="space-y-10">
+      <div class="space-y-1">
+        <h1 class="animate font-semibold text-black dark:text-white text-3xl">
+          {post.data.title}
+        </h1>
+        <div class="animate flex items-center gap-1.5">
+          <div class="font-base text-sm">
+            <FormattedDate date={post.data.date} />
+          </div>
         </div>
       </div>
+      <article class="animate">
+        <Content />
+      </article>
     </div>
-    <article class="animate">
-      <Content />
-    </article>
-  </Container>
-</PageLayout> 
+  </div>
+</ContentLayout> 

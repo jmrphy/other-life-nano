@@ -1,0 +1,19 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Container from '@components/Container.astro';
+
+// We need to accept the same props as PageLayout to pass them up.
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+---
+<PageLayout {title} {description}>
+  <div class="py-8 min-h-screen">
+    <Container paper>
+      <slot />
+    </Container>
+  </div>
+</PageLayout> 

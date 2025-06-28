@@ -1,0 +1,68 @@
+---
+type MarkdownHeading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const toc = headings.filter(heading => heading.depth > 1 && heading.depth < 4);
+---
+
+{toc.length > 0 &&
+  <nav class="toc sticky top-0 hidden lg:block">
+    <h2 class="font-semibold mb-4 pb-2 text-white border-b border-white/30">Table of Contents</h2>
+    <ul>
+      {toc.map(heading => (
+        <li class:list={[{'pl-4': heading.depth === 3}]}>
+          <a href={`#${heading.slug}`} class="block text-sm text-white dark:text-white hover:text-stone-300 dark:hover:text-stone-300 py-1">
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocLinks = document.querySelectorAll('.toc a');
+    const headings = Array.from(document.querySelectorAll('article h2, article h3'));
+
+    if (!tocLinks.length || !headings.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const correspondingLink = document.querySelector(`.toc a[href="#${id}"]`);
+        
+        if (entry.isIntersecting) {
+          tocLinks.forEach(link => link.classList.remove('font-semibold', 'text-black', 'dark:text-white'));
+          if (correspondingLink) {
+            correspondingLink.classList.add('font-semibold', 'text-black', 'dark:text-white');
+          }
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -80% 0px',
+      threshold: 1.0
+    });
+
+    headings.forEach(heading => {
+      observer.observe(heading);
+    });
+
+    // Highlight the first one by default
+    const firstLink = document.querySelector('.toc a');
+    if (firstLink) {
+      firstLink.classList.add('font-semibold', 'text-black', 'dark:text-white');
+    }
+  });
+</script> 

@@ -203,6 +203,6 @@ export const THEME = {
       dark: "shadow-xl",   // Large shadow for depth in dark mode
     },
     rounded: "rounded-lg", // Slightly rounded corners
-    padding: "p-8 sm:p-12", // Comfortable padding, more on larger screens
+    padding: "p-12 sm:p-16", // Comfortable padding, more on larger screens
   },
 };
