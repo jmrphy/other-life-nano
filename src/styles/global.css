@@ -44,6 +44,14 @@ article {
   @apply prose-headings:text-black prose-headings:dark:text-white;
 }
 
+article h2[id],
+article h3[id],
+article h4[id],
+article h5[id],
+article h6[id] {
+  @apply scroll-m-20;
+}
+
 @layer utilities {
   article a {
     @apply font-sans underline underline-offset-2;

@@ -1,0 +1,67 @@
+/* Table of Contents Enhancements */
+.toc-desktop {
+  /* Custom scrollbar for desktop TOC */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.toc-desktop::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-desktop::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-desktop::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.toc-desktop::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Desktop TOC specific styling for dark green background */
+.toc-desktop [data-toc-link] {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.toc-desktop [data-toc-link]:hover {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure TOC links are properly styled and accessible */
+[data-toc-link] {
+  text-decoration: none;
+  display: block;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+[data-toc-link]:focus {
+  @apply outline-2 outline-offset-2 outline-white;
+}
+
+/* Ensure proper spacing for nested headings */
+.toc-mobile [data-toc-link] span,
+.toc-desktop [data-toc-link] span {
+  line-height: 1.4;
+}
+
+/* Animation for smooth TOC interactions */
+@media (prefers-reduced-motion: no-preference) {
+  [data-toc-link] {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+/* Improve mobile TOC collapsible behavior if needed in future */
+.toc-mobile summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+.toc-mobile summary:focus {
+  @apply outline-2 outline-offset-2 outline-stone-500 dark:outline-stone-400;
+}

@@ -1,0 +1,37 @@
+---
+import ContentLayout from "@layouts/ContentLayout.astro";
+import { ABOUT } from "@consts"; // We'll add this to consts.ts next
+---
+
+<ContentLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <div class="space-y-10">
+    <h1 class="animate font-semibold text-black dark:text-white text-3xl">
+      Short Bio
+    </h1>
+    <section class="animate">
+      <article class="space-y-4">
+        <p>
+          This is the about page. You can write a bit about yourself.
+        </p>
+        <p>
+          Talk about your experiences, skills, and anything else you'd like to share.
+        </p>
+        <p>here is a <a href="https://aol.com">link</a></p>
+      </article>
+    </section>
+    <h1 class="animate font-semibold text-black dark:text-white text-3xl">
+      Long Bio
+    </h1>
+    <section class="animate">
+      <article class="space-y-4">
+        <p>
+          This is the about page. You can write a bit about yourself.
+        </p>
+        <p>
+          Talk about your experiences, skills, and anything else you'd like to share.
+        </p>
+        <p>here is a <a href="https://aol.com">link</a></p>
+      </article>
+    </section>
+  </div>
+</ContentLayout> 

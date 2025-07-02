@@ -3,9 +3,7 @@ import type { Site, Metadata, Socials } from "@types";
 export const SITE: Site = {
   NAME: "Justin Murphy",
   EMAIL: "justin@otherlife.co",
-  NUM_POSTS_ON_HOMEPAGE: 3,
-  NUM_WORKS_ON_HOMEPAGE: 2,
-  NUM_PROJECTS_ON_HOMEPAGE: 3,
+  NUM_POSTS_ON_HOMEPAGE: 5,
 };
 
 export const HOME: Metadata = {
@@ -18,16 +16,6 @@ export const BLOG: Metadata = {
   DESCRIPTION: "A collection of posts about my thoughts and experiences.",
 };
 
-export const WORK: Metadata = {
-  TITLE: "Work",
-  DESCRIPTION: "Where I have worked and what I have done.",
-};
-
-export const PROJECTS: Metadata = {
-  TITLE: "Projects",
-  DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
-};
-
 export const ABOUT: Metadata = {
   TITLE: "About",
   DESCRIPTION: "Learn more about me.",
@@ -35,16 +23,16 @@ export const ABOUT: Metadata = {
 
 export const SOCIALS: Socials = [
   { 
-    NAME: "twitter-x",
-    HREF: "https://twitter.com/markhorn_dev",
+    NAME: "X",
+    HREF: "https://x.com/jmrphy",
   },
   { 
-    NAME: "github",
-    HREF: "https://github.com/markhorn-dev"
+    NAME: "Youtube",
+    HREF: "https://youtube.com/justinmurphy"
   },
   { 
-    NAME: "linkedin",
-    HREF: "https://www.linkedin.com/in/markhorn-dev",
+    NAME: "Instagram",
+    HREF: "https://www.instagram.com/jstnmrphy",
   }
 ];
 
