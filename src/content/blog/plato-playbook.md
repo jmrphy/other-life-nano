@@ -5,6 +5,13 @@ date: "2025-07-29"
 draft: false
 ---
 
+<!-- Info Callout -->
+<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 my-6">
+  <p class="text-blue-800 dark:text-blue-200 mb-4">This is the transcript of a conversation with Alex Petkas on the <i>Other Life</i> podcast (Episode 219: "Plato Uncovered: Building Influence in the Ancient and Modern World"). <a href="https://www.youtube.com/watch?v=QrKzCfU0oZw" class="underline hover:text-blue-600 dark:hover:text-blue-300">Watch on YouTube</a> or <a href="https://share.transistor.fm/s/a9996dbd" class="underline hover:text-blue-600 dark:hover:text-blue-300">listen on the podcast feed</a>.</p>
+  
+  <p class="text-blue-800 dark:text-blue-200"><strong>About Alex Petkas:</strong> Alex is a former professor of ancient philosophy and history who hosts the acclaimed <a href="https://costofglory.com/" class="underline hover:text-blue-600 dark:hover:text-blue-300">Cost of Glory podcast</a>, where he dramatically retells Plutarch's Parallel Lives and other stories from Greco-Roman antiquity. His work focuses on extracting practical wisdom from ancient figures for modern audiences. You can find his podcast on <a href="https://podcasts.apple.com/us/podcast/cost-of-glory/id1580153815" class="underline hover:text-blue-600 dark:hover:text-blue-300">Apple Podcasts</a>, his writing on <a href="https://costofglory.substack.com/" class="underline hover:text-blue-600 dark:hover:text-blue-300">Substack</a>, and follow him on <a href="https://www.youtube.com/@costofglory" class="underline hover:text-blue-600 dark:hover:text-blue-300">YouTube</a>.</p>
+</div>
+
 In this conversation, Alex Petkas explains how Plato strategically built his immense influence by channeling existing authorities, targeting an elite international audience, leveraging worldly ambition, creating a tiered community around his Academy, and focusing on building a network of power rather than direct commercial success.
 
 - [How Plato used worldly ambition as fuel, not a distraction](#how-plato-used-worldly-ambition-as-fuel-not-a-distraction)
@@ -16,13 +23,6 @@ In this conversation, Alex Petkas explains how Plato strategically built his imm
 - [How Plato built a network on the ancient model of friendship](#how-plato-built-a-network-on-the-ancient-model-of-friendship)
 - [How Plato invented "the philosopher" to out-brand his rivals](#how-plato-invented-the-philosopher-to-out-brand-his-rivals)
 - [How Plato brokered power and influence, not just money](#how-plato-brokered-power-and-influence-not-just-money)
-
-<!-- Info Callout -->
-<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 my-6">
-  <p class="text-blue-800 dark:text-blue-200 mb-4"><strong>💡 About this conversation:</strong> This is a transcript of a conversation with Alex Petkas on the Other Life podcast (Episode 219: "Plato Uncovered: Building Influence in the Ancient and Modern World"). <a href="https://www.youtube.com/watch?v=QrKzCfU0oZw" class="underline hover:text-blue-600 dark:hover:text-blue-300">Watch on YouTube</a> or <a href="https://share.transistor.fm/s/a9996dbd" class="underline hover:text-blue-600 dark:hover:text-blue-300">listen on the podcast feed</a>.</p>
-  
-  <p class="text-blue-800 dark:text-blue-200"><strong>About Alex Petkas:</strong> Alex is a former professor of ancient philosophy and history who hosts the acclaimed <a href="https://costofglory.com/" class="underline hover:text-blue-600 dark:hover:text-blue-300">Cost of Glory podcast</a>, where he dramatically retells Plutarch's Parallel Lives and other stories from Greco-Roman antiquity. His work focuses on extracting practical wisdom from ancient figures for modern audiences. You can find his podcast on <a href="https://podcasts.apple.com/us/podcast/cost-of-glory/id1580153815" class="underline hover:text-blue-600 dark:hover:text-blue-300">Apple Podcasts</a>, his writing on <a href="https://costofglory.substack.com/" class="underline hover:text-blue-600 dark:hover:text-blue-300">Substack</a>, and follow him on <a href="https://www.youtube.com/@costofglory" class="underline hover:text-blue-600 dark:hover:text-blue-300">YouTube</a>.</p>
-</div>
 
 
 Justin Murphy: This podcast is going to be about the life of arguably the single most influential philosopher ever in the entire history of Western thought, Plato. We, however, are going to focus on something that you've probably never heard anyone talk about when it comes to Plato, which is the question of how practically Plato came to power as a philosopher.
