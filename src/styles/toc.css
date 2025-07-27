@@ -37,6 +37,7 @@
   display: block;
   word-break: break-word;
   hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 [data-toc-link]:focus {
@@ -46,7 +47,10 @@
 /* Ensure proper spacing for nested headings */
 .toc-mobile [data-toc-link] span,
 .toc-desktop [data-toc-link] span {
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Animation for smooth TOC interactions */

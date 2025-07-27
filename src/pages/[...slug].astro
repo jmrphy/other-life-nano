@@ -22,15 +22,15 @@ const { Content, headings } = await post.render();
 const hasH2Headings = headings.some(h => h.depth === 2);
 ---
 
-<div class="py-2 min-h-screen relative">
-  {/* Desktop TOC positioned absolutely to the page */}
-  {hasH2Headings && (
-    <aside class="hidden xl:block fixed top-[8rem] left-[calc(50%+24rem)] w-64 z-10">
-      <TableOfContents headings={headings} variant="desktop" />
-    </aside>
-  )}
-  
-  <ContentLayout title={post.data.title} description={post.data.description}>
+<ContentLayout title={post.data.title} description={post.data.description}>
+  <div class="py-2 min-h-screen relative">
+    {/* Desktop TOC positioned absolutely to the page */}
+    {hasH2Headings && (
+      <aside class="hidden xl:block fixed top-[8rem] left-[calc(50%+24rem)] w-64 z-10">
+        <TableOfContents headings={headings} variant="desktop" />
+      </aside>
+    )}
+    
     {/* Mobile TOC - appears at top of content */}
     {hasH2Headings && (
       <div class="xl:hidden mb-8">
@@ -54,5 +54,5 @@ const hasH2Headings = headings.some(h => h.depth === 2);
         <Content />
       </article>
     </div>
-  </ContentLayout>
-</div> 
+  </div>
+</ContentLayout> 

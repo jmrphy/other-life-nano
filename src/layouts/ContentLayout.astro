@@ -12,7 +12,7 @@ const { title, description } = Astro.props;
 ---
 <PageLayout {title} {description}>
   <div class="min-h-screen">
-    <Container paper>
+    <Container paper class="min-h-[1000px]">
       <slot />
     </Container>
   </div>

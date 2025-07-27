@@ -22,10 +22,10 @@ const getVariantClasses = () => {
     return {
       nav: 'toc-mobile block xl:hidden',
       container: 'bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg shadow-lg p-4 mb-8',
-      title: 'text-stone-900 dark:text-white font-semibold text-base mb-3 pb-2 border-b border-stone-200 dark:border-stone-700',
-      list: 'space-y-1',
+      title: 'text-stone-900 dark:text-white font-semibold text-sm mb-3 pb-2 border-b border-stone-200 dark:border-stone-700',
+      list: 'space-y-2',
       item: 'block',
-      link: 'block text-sm text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white py-1.5 px-2 rounded transition-colors duration-200 hover:bg-stone-50 dark:hover:bg-stone-700',
+      link: 'block text-xs text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white py-2 px-2 rounded transition-colors duration-200 hover:bg-stone-50 dark:hover:bg-stone-700 leading-relaxed',
       activeLink: 'font-medium text-stone-900 dark:text-white bg-stone-100 dark:bg-stone-700'
     };
   }
@@ -33,10 +33,10 @@ const getVariantClasses = () => {
   return {
     nav: 'toc-desktop hidden xl:block',
     container: 'sticky top-0 max-h-[calc(100vh-10rem)] overflow-y-auto',
-    title: 'text-white font-semibold text-sm mb-4 pb-2 border-b border-white/20 tracking-wide uppercase',
-    list: 'space-y-1',
+    title: 'text-white font-semibold text-xs mb-4 pb-2 border-b border-white/20 tracking-wide uppercase',
+    list: 'space-y-2',
     item: 'block',
-    link: 'block text-sm text-white/80 hover:text-white py-1.5 px-0 transition-colors duration-200',
+    link: 'block text-xs text-white/80 hover:text-white py-1.5 px-0 transition-colors duration-200 leading-relaxed',
     activeLink: 'font-medium text-white'
   };
 };
@@ -53,7 +53,7 @@ const classes = getVariantClasses();
           const isH3 = heading.depth === 3;
           const itemClasses = isH3 ? 'ml-4' : '';
           const linkClasses = isH3 
-            ? classes.link.replace('text-sm', 'text-xs')
+            ? classes.link.replace('text-xs', 'text-[10px]')
             : classes.link;
           
           return (
@@ -65,7 +65,7 @@ const classes = getVariantClasses();
                 data-heading-id={heading.slug}
                 title={heading.text}
               >
-                <span class="block truncate">{heading.text}</span>
+                <span class="block">{heading.text}</span>
               </a>
             </li>
           );
