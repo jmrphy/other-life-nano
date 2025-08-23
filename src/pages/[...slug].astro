@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import ContentLayout from "@layouts/ContentLayout.astro";
 import FormattedDate from "@components/FormattedDate.astro";
 import TableOfContents from "@components/TableOfContents.astro";
+import { THEME } from "@consts";
 
 
 export async function getStaticPaths() {
@@ -26,7 +27,7 @@ const hasH2Headings = headings.some(h => h.depth === 2);
   <div class="py-2 min-h-screen relative">
     {/* Desktop TOC positioned absolutely to the page */}
     {hasH2Headings && (
-      <aside class="hidden xl:block fixed top-[8rem] left-[calc(50%+24rem)] w-64 z-10">
+      <aside class="hidden xl:block fixed top-[8rem] left-[calc(50%+30rem)] w-64 z-10">
         <TableOfContents headings={headings} variant="desktop" />
       </aside>
     )}
@@ -39,7 +40,7 @@ const hasH2Headings = headings.some(h => h.depth === 2);
     )}
     
     {/* Main content - same for all cases */}
-    <div class="space-y-10">
+    <div class={`space-y-10 ${THEME.container.text.default} ${THEME.container.text.desktop} mx-auto`}>
       <div class="space-y-1">
         <h1 class="animate font-semibold text-black dark:text-white text-3xl">
           {post.data.title}
@@ -50,7 +51,7 @@ const hasH2Headings = headings.some(h => h.depth === 2);
           </div>
         </div>
       </div>
-      <article class="animate prose prose-stone dark:prose-invert max-w-none">
+      <article class="animate prose prose-stone dark:prose-invert text-base sm:text-lg leading-relaxed hyphens-auto">
         <Content />
       </article>
     </div>

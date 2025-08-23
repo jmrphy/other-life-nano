@@ -11,8 +11,13 @@ const { paper = false, class: extraClass = "" } = Astro.props;
 const paperClasses = paper 
   ? `${THEME.paper.background.light} dark:${THEME.paper.background.dark} ${THEME.paper.shadow.light} dark:${THEME.paper.shadow.dark} ${THEME.paper.rounded} ${THEME.paper.padding}`
   : "px-5";
+
+// Use wider container for paper effect, standard width for regular content
+const containerWidths = paper 
+  ? `${THEME.container.paper.default} ${THEME.container.paper.desktop}`
+  : `${THEME.container.default} ${THEME.container.desktop}`;
 ---
 
-<div class={`mx-auto ${THEME.container.default} ${THEME.container.desktop} ${paperClasses} ${extraClass}`}>
+<div class={`mx-auto ${containerWidths} ${paperClasses} ${extraClass}`}>
   <slot />
 </div>

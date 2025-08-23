@@ -1,14 +1,10 @@
-![Astro Nano](_astro_nano.png)
+# Justin Murphy Studio
 
-Astro Nano is a static, minimalist, lightweight, lightning fast portfolio and blog theme.
+Personal website and blog for Justin Murphy, built with Astro Nano theme.
 
-Built with Astro, Tailwind and Typescript, an no frameworks.
+## 🌐 Live Site
 
-It was designed as an even more minimal theme than my popular theme [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
-
-## 🚀 Deploy your own
-
-[![Deploy with Vercel](_deploy_vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/markhorn-dev/astro-nano)  [![Deploy with Netlify](_deploy_netlify.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/markhorn-dev/astro-nano)
+Visit [justinmurphy.studio](https://justinmurphy.studio)
 
 ## 📋 Features
 
@@ -26,18 +22,23 @@ It was designed as an even more minimal theme than my popular theme [Astro Spher
 - ✅ Markdown support
 - ✅ MDX Support (components in your markdown)
 
-## 💯 Lighthouse score
-![Astro Nano Lighthouse Score](_lighthouse.png)
+## 🎨 Customizations
 
-## 🕊️ Lightweight
-No frameworks or added bulk
+This site includes several customizations built on the Astro Nano theme:
 
-## ⚡︎ Fast
-Rendered in ~40ms on localhost
+- **Custom theme system**: Centralized theming in `src/consts.ts` with extensive color and layout customization
+- **Enhanced image handling**: `FigureImage` component for optimized blog post images with captions
+- **Custom branding**: Dark green and gold color scheme with responsive design
+- **Paper-style layouts**: Elevated card styling for content pages
 
 ## 📄 Configuration
 
-The blog posts on the demo serve as the documentation and configuration.
+Site configuration is managed in `src/consts.ts` including:
+- Site metadata and social links
+- Theme customization (colors, layouts, typography)
+- Content display settings
+
+For detailed development guidance, see [CLAUDE.md](CLAUDE.md).
 
 ## 💻 Commands
 
@@ -50,7 +51,6 @@ Replace npm with your package manager of choice.
 | `npm install`             | Installs dependencies                            |
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run dev:network`     | Starts local dev server on local network         |
-| `npm run sync`            | Generates TypeScript types for all Astro modules.|
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run preview:network` | Preview build on local network                   |

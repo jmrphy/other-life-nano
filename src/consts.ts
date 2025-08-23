@@ -18,7 +18,7 @@ export const BLOG: Metadata = {
 
 export const ABOUT: Metadata = {
   TITLE: "About",
-  DESCRIPTION: "Learn more about me.",
+  DESCRIPTION: "Learn more.",
 };
 
 export const SOCIALS: Socials = [
@@ -52,8 +52,19 @@ export const SOCIALS: Socials = [
 export const THEME = {
   // Container widths
   container: {
+    // Non-paper containers (homepage, etc.) - keep pixel-based for layout
     default: "max-w-screen-sm", // Original: max-w-screen-sm
     desktop: "lg:max-w-screen-md", // Original: none (was max-w-screen-sm on all screens)
+    // Paper container is wider to create more margin around text
+    paper: {
+      default: "max-w-screen-md", // Wider than text column on mobile/tablet
+      desktop: "lg:max-w-screen-lg", // Wider than text column on desktop
+    },
+    // Text content optimal reading width - character-based
+    text: {
+      default: "max-w-[38ch]", // ~38 characters per line on mobile
+      desktop: "sm:max-w-[55ch]", // ~55 characters per line on desktop
+    }
   },
   
   // Background colors
@@ -180,6 +191,7 @@ export const THEME = {
     }
   },
 
+
   // Container styles
   paper: {
     background: {
@@ -191,6 +203,6 @@ export const THEME = {
       dark: "shadow-xl",   // Large shadow for depth in dark mode
     },
     rounded: "rounded-lg", // Slightly rounded corners
-    padding: "p-12 sm:p-16", // Comfortable padding, more on larger screens
+    padding: "p-20 sm:p-28", // More generous padding, even more on larger screens
   },
 };
