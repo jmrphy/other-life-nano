@@ -95,7 +95,7 @@ When importing content from Obsidian vault notes:
    - Captions support HTML elements like `<em>` for italics
 
 ### Style Preferences
-- **Slugs**: Keep URLs short and memorable (prefer `/farber` over `/manny-farbers-rhizome`)
+- **Slugs**: Use single word slugs when possible (prefer `/ivf` over `/ivf-embryo-selection`, `/farber` over `/manny-farbers-rhizome`)
 - **Images**: Store locally with each post in `images/` subdirectory (follows Astro best practices)
 - **Captions**: Use semantic HTML (`<em>` for emphasis) rather than markdown syntax
 - **Import paths**: Use relative `./images/` paths for blog post images
