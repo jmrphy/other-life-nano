@@ -12,7 +12,7 @@ const { imageSrc, alt, caption } = Astro.props as Props;
 
 <figure>
   <Image src={imageSrc} alt={alt} />
-  <figcaption>{caption}</figcaption>
+  <figcaption set:html={caption}></figcaption>
 </figure>
 
 <style>

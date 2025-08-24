@@ -37,9 +37,10 @@ This is an Astro-based static site generator with a blog and portfolio theme. Ke
 - `Container.astro` - Responsive container with optional paper styling
 
 ### Image Handling
-- **Preferred**: Store images in `src/content/blog/images/` for optimization
+- **Local storage**: Store images in `src/content/blog/[post]/images/` alongside content (per Astro recommendations)
 - **Blog posts**: Use `FigureImage.astro` component for consistent styling and captions
 - **Import pattern**: `<FigureImage imageSrc={import('./images/image.png')} alt="..." caption="..." />`
+- **Caption formatting**: Use HTML `<em>` tags for italicized artwork titles in captions
 - **Public assets**: Only for unprocessed files (favicons, etc.) in `public/`
 
 ### TypeScript Configuration
@@ -57,3 +58,53 @@ This is an Astro-based static site generator with a blog and portfolio theme. Ke
 - Site metadata in `src/consts.ts` (SITE, HOME, BLOG, ABOUT, SOCIALS)
 - Utility functions in `src/lib/utils.ts` for date formatting and reading time
 - Type definitions in `src/types.ts`
+
+## Obsidian to Blog Workflow
+
+### Converting Obsidian Notes to Blog Posts
+
+When importing content from Obsidian vault notes:
+
+1. **Directory Structure**:
+   - Create blog post directory: `src/content/blog/[short-slug]/`
+   - Use short, simple slugs (e.g., `/farber` instead of `/manny-farbers-rhizome`)
+   - Create `index.mdx` file for the post content
+
+2. **Image Migration**:
+   - Copy all referenced images to `src/content/blog/[post]/images/`
+   - Update Obsidian image syntax `![[image.jpg]]` to FigureImage components
+   - Convert to: `<FigureImage imageSrc={import('./images/image.jpg')} alt="..." caption="..." />`
+
+3. **Frontmatter Setup**:
+   ```yaml
+   ---
+   title: "Post Title"
+   description: "Brief description for SEO and previews"
+   date: YYYY-MM-DD
+   ---
+   ```
+
+4. **Content Formatting**:
+   - Add FigureImage import: `import FigureImage from "@components/FigureImage.astro"`
+   - Convert Obsidian image syntax to FigureImage components
+   - Use HTML `<em>` tags in captions for italicized artwork/book titles
+   - Preserve blockquotes and markdown formatting
+
+5. **Component Configuration**:
+   - FigureImage component uses `set:html` for caption rendering to support HTML formatting
+   - Captions support HTML elements like `<em>` for italics
+
+### Style Preferences
+- **Slugs**: Keep URLs short and memorable (prefer `/farber` over `/manny-farbers-rhizome`)
+- **Images**: Store locally with each post in `images/` subdirectory (follows Astro best practices)
+- **Captions**: Use semantic HTML (`<em>` for emphasis) rather than markdown syntax
+- **Import paths**: Use relative `./images/` paths for blog post images
+
+### Known Issues & Solutions
+- **MDX parsing**: Avoid complex inline CSS in MDX files; use Tailwind classes or component styling
+- **Caption italics**: 
+  - ❌ **Wrong**: Markdown `*italics*` syntax displays as visible asterisks
+  - ✅ **Correct**: Use HTML `<em>` tags in captions for proper italics
+  - **Why**: FigureImage component uses `set:html` directive to render HTML in captions
+  - **Example**: `caption="<em>Night and Day</em>, 1990"` renders italics correctly
+- **TOC integration**: Standard markdown headings work with TableOfContents component; avoid invisible headers for images

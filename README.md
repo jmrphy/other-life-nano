@@ -40,6 +40,23 @@ Site configuration is managed in `src/consts.ts` including:
 
 For detailed development guidance, see [CLAUDE.md](CLAUDE.md).
 
+## 📝 Content Workflow
+
+### Importing from Obsidian
+
+This site supports importing content from Obsidian vault notes with the following workflow:
+
+1. **Create blog post**: Copy Obsidian note content to `src/content/blog/[short-slug]/index.mdx`
+2. **Migrate images**: Copy referenced images to `src/content/blog/[post]/images/` alongside the post
+3. **Convert syntax**: Transform Obsidian `![[image.jpg]]` syntax to `<FigureImage imageSrc={import('./images/image.jpg')} ... />`
+4. **Add frontmatter**: Include required `title`, `description`, and `date` fields
+5. **Format captions**: Use HTML `<em>` tags for italicized titles in image captions
+
+**Style preferences**:
+- Use short, memorable URL slugs (e.g., `/farber` vs `/manny-farbers-rhizome`)
+- Store images locally with each post in `images/` subdirectory (follows Astro recommendations)
+- **Caption formatting**: Use HTML `<em>` tags for italics, not markdown `*asterisks*` (which display as visible text)
+
 ## 💻 Commands
 
 All commands are run from the root of the project, from a terminal:
