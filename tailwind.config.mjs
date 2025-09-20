@@ -12,6 +12,16 @@ export default {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         serif: ["Lora", ...defaultTheme.fontFamily.serif],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            hr: {
+              marginTop: '1.5em',
+              marginBottom: '1.5em',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],

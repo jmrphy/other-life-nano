@@ -20,9 +20,15 @@ Always run `npm run build` before committing to ensure TypeScript compilation an
 This is an Astro-based static site generator with a blog and portfolio theme. Key architectural patterns:
 
 ### Content Management
-- **Blog posts**: Located in `src/content/blog/` as MDX files (preferred) or Markdown
-- **Content schema**: Defined in `src/content/config.ts` with Zod validation
-- **Frontmatter**: Required fields are `title`, `description`, `date`; optional `draft` field
+- **Blog posts**: Use MDX (`index.mdx`) for any post with images or components. Markdown (`.md`) is only acceptable for simple text-only posts.
+- **Images**: Colocate under `src/content/blog/[post]/images/` for Astro optimization.
+- **FigureImage component**: Required for blog images to ensure optimization, captions, and consistent styling.
+- **Import pattern**:
+  ```mdx
+  import FigureImage from "@/components/FigureImage.astro";
+  <FigureImage imageSrc={import('./images/image.png')} alt="..." caption="..." />
+  ```
+- **Frontmatter**: `title`, `description`, `date` (Zod schema enforced). Optional `draft`, `slug`.
 
 ### Theme System
 - **Centralized theming**: All customizations in `src/consts.ts` under the `THEME` object
@@ -37,11 +43,10 @@ This is an Astro-based static site generator with a blog and portfolio theme. Ke
 - `Container.astro` - Responsive container with optional paper styling
 
 ### Image Handling
-- **Local storage**: Store images in `src/content/blog/[post]/images/` alongside content (per Astro recommendations)
-- **Blog posts**: Use `FigureImage.astro` component for consistent styling and captions
-- **Import pattern**: `<FigureImage imageSrc={import('./images/image.png')} alt="..." caption="..." />`
-- **Caption formatting**: Use HTML `<em>` tags for italicized artwork titles in captions
-- **Public assets**: Only for unprocessed files (favicons, etc.) in `public/`
+- **Local storage (preferred)**: `src/content/blog/[post]/images/`.
+- **Public assets**: Only for non-optimized files in `public/`; reference with `/file.png` and note no captions/styling.
+- **Styling**: `FigureImage` includes `not-prose` internally to avoid Tailwind Typography overrides.
+- **Accessibility**: Provide meaningful `alt` text.
 
 ### TypeScript Configuration
 - Strict mode enabled with `astro/tsconfigs/strict`
@@ -65,30 +70,31 @@ This is an Astro-based static site generator with a blog and portfolio theme. Ke
 
 When importing content from Obsidian vault notes:
 
-1. **Directory Structure**:
-   - Create blog post directory: `src/content/blog/[short-slug]/`
-   - Use short, simple slugs (e.g., `/farber` instead of `/manny-farbers-rhizome`)
-   - Create `index.mdx` file for the post content
+1.  **Directory Structure**:
+    -   Create a directory for the new post, e.g., `src/content/blog/your-post-slug/`.
+    -   Inside this directory, create an `index.mdx` file for the post's content.
+    -   Also create an `images/` subdirectory: `src/content/blog/your-post-slug/images/`.
 
-2. **Image Migration**:
-   - Copy all referenced images to `src/content/blog/[post]/images/`
-   - Update Obsidian image syntax `![[image.jpg]]` to FigureImage components
-   - Convert to: `<FigureImage imageSrc={import('./images/image.jpg')} alt="..." caption="..." />`
+2.  **Image Migration**:
+    -   Copy all images referenced in the note to the newly created `images/` subdirectory.
+    -   Update Obsidian's image syntax `![[image.jpg]]` to use the `FigureImage` component.
+    -   The correct format is: `<FigureImage imageSrc={import('./images/image.jpg')} alt="description" caption="caption text" />`.
 
-3. **Frontmatter Setup**:
-   ```yaml
-   ---
-   title: "Post Title"
-   description: "Brief description for SEO and previews"
-   date: YYYY-MM-DD
-   ---
-   ```
+3.  **Frontmatter Setup**:
+    -   Ensure the `index.mdx` file has the required frontmatter:
+        ```yaml
+        ---
+        title: "Post Title"
+        description: "Brief description for SEO and previews"
+        date: YYYY-MM-DD
+        ---
+        ```
 
-4. **Content Formatting**:
-   - Add FigureImage import: `import FigureImage from "@components/FigureImage.astro"`
-   - Convert Obsidian image syntax to FigureImage components
-   - Use HTML `<em>` tags in captions for italicized artwork/book titles
-   - Preserve blockquotes and markdown formatting
+4.  **Content Formatting**:
+    -   Add the `FigureImage` import statement at the top of your `index.mdx` file: `import FigureImage from "@components/FigureImage.astro";`.
+    -   Convert all Obsidian image links to `FigureImage` components as described above.
+    -   Use HTML `<em>` tags within captions for italicizing titles of artworks or books.
+    -   Preserve existing blockquotes and other Markdown formatting.
 
 5. **Component Configuration**:
    - FigureImage component uses `set:html` for caption rendering to support HTML formatting
@@ -101,10 +107,8 @@ When importing content from Obsidian vault notes:
 - **Import paths**: Use relative `./images/` paths for blog post images
 
 ### Known Issues & Solutions
-- **MDX parsing**: Avoid complex inline CSS in MDX files; use Tailwind classes or component styling
-- **Caption italics**: 
-  - ❌ **Wrong**: Markdown `*italics*` syntax displays as visible asterisks
-  - ✅ **Correct**: Use HTML `<em>` tags in captions for proper italics
-  - **Why**: FigureImage component uses `set:html` directive to render HTML in captions
-  - **Example**: `caption="<em>Night and Day</em>, 1990"` renders italics correctly
-- **TOC integration**: Standard markdown headings work with TableOfContents component; avoid invisible headers for images
+- **Components not rendering in a post**: Ensure the file is `.mdx`, not `.md`.
+- **Custom image styles missing**: Use `FigureImage`. It already opts out of `prose` styles.
+- **Caption italics**:
+  - ❌ Wrong: Markdown `*italics*` inside captions
+  - ✅ Correct: Use HTML `<em>` in captions (`FigureImage` renders caption with `set:html`)

@@ -24,6 +24,13 @@ body {
   @apply text-black/50 dark:text-white/75;
 }
 
+/* Disable hyphenation across the site */
+:root, html, body, article, p, h1, h2, h3, h4, h5, h6 {
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-5;
   @apply bg-stone-100/75 dark:bg-stone-900/25;

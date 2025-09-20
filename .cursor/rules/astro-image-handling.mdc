@@ -3,13 +3,13 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Astro Image Handling Guide
+# Project Conventions for Image Handling in Astro
 
 This project uses Astro. Here's how images are handled:
 
 ## Image Locations
 
-*   **`src/` directory (Default for Blog Posts & Recommended):** Store images here for optimization by Astro. **For blog posts, the default is to colocate images** in a subdirectory next to the post (e.g., `[src/content/blog/images/](mdc:src/content/blog/images)` for a blog post file in `src/content/blog/`).
+*   **`src/` directory (Default for Blog Posts & Recommended):** Store images here for optimization by Astro. **For blog posts, the default is to colocate images** in a subdirectory next to the post (e.g., `src/content/blog/post-name/images/` for a blog post at `src/content/blog/post-name/index.mdx`).
 *   **`public/` directory:** Only store images here if they **must not** be processed or optimized by Astro (e.g., favicons, social sharing images). These are accessed via root-relative paths (e.g., `/my-image.png`).
 
 ## Usage in Content Files
@@ -27,21 +27,37 @@ This project uses Astro. Here's how images are handled:
 
 MDX files (like `[meltdown-logistically-accelerating.mdx](mdc:src/content/blog/meltdown-logistically-accelerating.mdx)`) are the **preferred format for blog posts**.
 
-*   **Default for Blog Posts:** Use the custom `[FigureImage.astro](mdc:src/components/FigureImage.astro)` component. This ensures optimized images (from `src/`), consistent styling, and captions.
-    1.  Store the image in a subdirectory relative to the MDX file (e.g., `./images/`).
-    2.  Import the component: `import FigureImage from '@/components/FigureImage.astro';` (or relative path)
-    3.  Use the component, passing the imported image source, alt text, and caption:
+## Blog Posts: MDX is the default
 
-    ```jsx
-    <FigureImage 
-      imageSrc={import('./images/my-local-image.png')} 
-      alt="A descriptive alt text for the image."
-      caption="This is the caption for the image."
-    />
-    ```
+- **Always use `.mdx`** for blog posts, especially if images or components are included.
+- **Do not use `.md`** for posts with images/components; components will not render in `.md`.
 
-*   **Alternative (Simple Images in MDX):** For an optimized image from `src/` *without* the standard caption/styling, use Astro's `<Image />` component:
-    1. Import: `import { Image } from 'astro:assets';`
-    2. Use: `<Image src={import('./images/another-image.png')} alt="Simple image" />`
+### Standard pattern
+1. Create: `src/content/blog/[slug]/index.mdx`
+2. Images in: `src/content/blog/[slug]/images/`
+3. Import and use:
+   ```jsx
+   import FigureImage from '@/components/FigureImage.astro'
+   <FigureImage 
+     imageSrc={import('./images/my-local-image.png')} 
+     alt="Describe the image" 
+     caption="Optional <em>caption</em>"
+   />
+   ```
+4. Frontmatter:
+   ```yaml
+   ---
+   title: "Title"
+   description: "Description"
+   date: YYYY-MM-DD
+   slug: "optional-custom-slug"
+   ---
+   ```
 
-*   **Alternative (Public Images in MDX):** For images in `public/` (not optimized), use `<img>`: `<img src="/public-image.png" alt="Unoptimized public image">`
+### Styling notes
+- `FigureImage` sets `class="not-prose"` to prevent Tailwind Typography from overriding custom styles.
+- Avoid wrapping `FigureImage` with additional containers that add conflicting styles.
+
+### Markdown fallback (rare)
+- Use `.md` only for text-only posts.
+- If you include an image in Markdown, use `![alt](./images/image.png)`. This bypasses our `FigureImage` component (no captions/custom styles) and is not recommended for blog posts.

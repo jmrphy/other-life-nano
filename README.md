@@ -42,20 +42,58 @@ For detailed development guidance, see [CLAUDE.md](CLAUDE.md).
 
 ## 📝 Content Workflow
 
-### Importing from Obsidian
+### Blog posts with images (MDX required)
 
-This site supports importing content from Obsidian vault notes with the following workflow:
+- **Use MDX** for any post that includes images or components. Save as `src/content/blog/[slug]/index.mdx`.
+- **Colocate images** in `src/content/blog/[slug]/images/`.
+- **Use the `FigureImage` component** for consistent styling, optimization, and captions.
 
-1. **Create blog post**: Copy Obsidian note content to `src/content/blog/[short-slug]/index.mdx`
-2. **Migrate images**: Copy referenced images to `src/content/blog/[post]/images/` alongside the post
-3. **Convert syntax**: Transform Obsidian `![[image.jpg]]` syntax to `<FigureImage imageSrc={import('./images/image.jpg')} ... />`
-4. **Add frontmatter**: Include required `title`, `description`, and `date` fields
-5. **Format captions**: Use HTML `<em>` tags for italicized titles in image captions
+Example usage inside `index.mdx`:
 
-**Style preferences**:
-- Use short, memorable URL slugs (e.g., `/farber` vs `/manny-farbers-rhizome`)
-- Store images locally with each post in `images/` subdirectory (follows Astro recommendations)
-- **Caption formatting**: Use HTML `<em>` tags for italics, not markdown `*asterisks*` (which display as visible text)
+```mdx
+import FigureImage from '@/components/FigureImage.astro';
+
+<FigureImage 
+  imageSrc={import('./images/my-image.png')} 
+  alt="Describe the image for accessibility." 
+  caption="Optional caption; supports HTML like <em>italics</em>." 
+/>
+```
+
+Notes:
+- `FigureImage` already opts out of typography overrides via `not-prose`; no extra classes needed.
+- Use meaningful, specific `alt` text.
+- Prefer PNG/JPG sources; Astro will output optimized formats.
+
+### Text-only posts (optional Markdown)
+
+- You may use `.md` only for simple, text-only posts without components.
+- If you must include a basic image in Markdown, use standard syntax. This will not use our custom styling/captioning:
+
+```md
+![Alt text](./images/my-image.png)
+```
+
+### Image locations
+
+- **Default (recommended)**: Store post images under `src/content/blog/[slug]/images/` (optimized by Astro).
+- **Public assets**: Only for files that must bypass optimization (favicons, social images). Reference with root paths like `/social-card.png`.
+
+### Creating a new post (checklist)
+
+1. Create directory: `src/content/blog/[slug]/`
+2. Add `index.mdx` with frontmatter:
+   ```yaml
+   ---
+   title: "My Post Title"
+   description: "Short SEO description"
+   date: YYYY-MM-DD
+   slug: "optional-custom-slug"
+   ---
+   ```
+3. Create `images/` and add local images.
+4. Import and use `FigureImage` for each image.
+5. Run `npm run build` to catch frontmatter/schema issues.
 
 ## 💻 Commands
 

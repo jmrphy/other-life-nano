@@ -11,7 +11,7 @@ export async function getStaticPaths() {
     .filter(post => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.data.slug || post.slug },
     props: post,
   }));
 }
@@ -51,7 +51,7 @@ const hasH2Headings = headings.some(h => h.depth === 2);
           </div>
         </div>
       </div>
-      <article class="animate prose prose-stone dark:prose-invert text-base sm:text-lg leading-relaxed hyphens-auto">
+      <article class="animate prose prose-stone dark:prose-invert text-base sm:text-lg leading-relaxed hyphens-none">
         <Content />
       </article>
     </div>
